@@ -2,9 +2,11 @@ import React from "react";
 import imagenes from "../../Assets/Images/imagenes";
 import { FaCamera } from "react-icons/fa";
 import { RouteBack } from "../../Models";
+import { useProductContext } from "../../Context/ProductosContext";
 
-function Perfil({ openModal, user }) {
+function Perfil() {
 
+    const { user, openModalPerfil } = useProductContext();
     const imagenLocal = imagenes.perfil;
     const imagenServer = RouteBack + user.perfil;
     const imagen = user.perfil;
@@ -13,8 +15,8 @@ function Perfil({ openModal, user }) {
     return (
         <div className="perfil">
             <img src={imagen ? imagenServer : imagenLocal} alt="perfil" />
-            {openModal &&
-                <button className="change-perfil" onClick={openModal}>
+            {openModalPerfil &&
+                <button className="change-perfil" onClick={openModalPerfil}>
                     <FaCamera />
                 </button>
             }

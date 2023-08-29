@@ -1,86 +1,45 @@
-import React, { useEffect, useState } from 'react';
-import { agregarProducto, consultarProductosPorTienda } from '../Services/productService';
-import { alertError, alertSucces } from '../Utilities';
+import { useState } from 'react';
 import { useSelector } from 'react-redux';
+import { useProductContext } from '../Context/ProductosContext';
 
 function useProduct() {
 
     const user = useSelector((state) => state.user);
-    const [nombre, setNombre] = useState("");
-    const [codigo, setCodigo] = useState("");
-    const [precio, setPrecio] = useState("");
-    const [cantidad, setCantidad] = useState("");
-    const [imagen, setImagen] = useState(null);
-    const [productos, setProductos] = useState([]);
-    const [loading, setLoading] = useState(false);
+    const { addProduct } = useProductContext();
 
-    const handleNombreChange = (event) => {
-        setNombre(event.target.value);
-    };
+    const [product, setProduct] = useState({
+        tienda_id: user,
+        codigo: '',
+        nombre: '',
+        precio: '',
+        cantidad: '',
+        imagen: '',
+    });
 
-    const handleCodigoChange = (event) => {
-        setCodigo(event.target.value);
-    };
-
-    const handleCantidadChange = (event) => {
-        setCantidad(event.target.value);
-    };
-
-    const handlePrecioChange = (event) => {
-        setPrecio(event.target.value);
+    const handleChange = ({ target }) => {
+        setProduct({
+            ...product,
+            [target.name]: target.value
+        });
     };
 
     const handleImagenChange = (event) => {
         const file = event.target.files[0];
-        setImagen(file);
+        setProduct({
+            ...product,
+            imagen: file
+        });
     };
 
-    const handleSubmit = async (e) => {
-        try {
-            e.preventDefault();
-            const formData = new FormData();
-
-            formData.append('tienda_id', user.id);
-            formData.append('nombre', nombre);
-            formData.append('codigo', codigo);
-            formData.append('precio', precio);
-            formData.append('cantidad', cantidad);
-            formData.append('imagen', imagen);
-
-            const data = await agregarProducto(formData);
-            if (data) {
-                alertSucces("Producto creado correctamente");
-            }
-        } catch (error) {
-            alertError("Algo salio mal");
-        }
+    const handleSubmit = (event) => {
+        event.preventDefault();
+        addProduct(product);
     };
-
-    const getProductosPorTienda = async () => {
-        try {
-            setProductos(await consultarProductosPorTienda(user.id));
-        } catch (error) {
-            alertError("Algo salio mal");
-        }
-    };
-
-    useEffect(() => {
-        getProductosPorTienda();
-    }, []);
 
     return {
-        cantidad,
-        handleCantidadChange,
-        codigo,
-        handleCodigoChange,
-        imagen,
+        handleChange,
         handleImagenChange,
-        nombre,
-        handleNombreChange,
-        precio,
-        handlePrecioChange,
         handleSubmit,
-        productos
     };
 }
 

@@ -1,7 +1,11 @@
 import React from 'react';
 import { FaTimes } from 'react-icons/fa';
+import useProduct from '../../Hooks/useProduct';
+import { Spinner } from '../Spinner';
 
 function Modal({ handleSubmit, modalIsOpen, closeModal, titulo, children }) {
+
+    const { loadingAgregar } = useProduct();
 
     if (modalIsOpen) {
         return (
@@ -16,7 +20,7 @@ function Modal({ handleSubmit, modalIsOpen, closeModal, titulo, children }) {
                     </div>
                     <div className="footer-modal">
                         <button className="buton-cancel" onClick={closeModal}> Cancelar </button>
-                        <button className="buton-cancel" onClick={handleSubmit}> GUardar </button>
+                        <button className="buton-cancel" onClick={handleSubmit}> {loadingAgregar ? <Spinner /> : "GUARDAR"} </button>
                     </div>
                 </div>
             </div >

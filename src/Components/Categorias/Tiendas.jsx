@@ -23,7 +23,7 @@ function Tiendas({ tiendas, loading }) {
                                 </div>
                             </Link>
                         ))) :
-                        (<div>No hay ninguna tienda aun.</div>)
+                        (<div className="no-encontrado"> No se ha creado ninguna tienda con esta categoría </div>)
             }
         </>
     );

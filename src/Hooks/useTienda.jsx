@@ -1,62 +1,30 @@
-import React, { useEffect, useState } from 'react';
-import { alertError, alertSucces } from '../Utilities';
-import { cambiarPerfil, cambiarPortada } from '../Services/tiendaService';
-import { useDispatch, useSelector } from 'react-redux';
-import { createUser } from '../Redux/userSlice';
+import { useState } from 'react';
+import { useProductContext } from '../Context/ProductosContext';
 
 function useTienda() {
 
-    const user = useSelector((state) => state.user);
-    const dispatch = useDispatch();
+    const { cambiarImagenPortada, cambiarImagenPerfil } = useProductContext();
     const [imagen, setImagen] = useState(null);
-    const [open, setOpen] = useState(false);
-
-    useEffect(() => {
-        setOpen(false);
-    }, [])
 
     const handlechange = (event) => {
         const file = event.target.files[0];
         setImagen(file);
     };
 
-    const handlesubmit = async (e) => {
-        try {
-            e.preventDefault();
-            const formData = new FormData();
-            formData.append('perfil', imagen);
-            const data = await cambiarPerfil(formData, user.id);
-            if (data) {
-                dispatch(createUser(data.data));
-                setOpen(true);
-                alertSucces(data.message);
-            }
-        } catch (error) {
-            alertError(data.message);
-        }
+    const handlesubmitperfil = async (e) => {
+        e.preventDefault();
+        cambiarImagenPerfil(imagen);
     };
 
     const handlesubmitportada = async (e) => {
-        try {
-            e.preventDefault();
-            const formData = new FormData();
-            formData.append('portada', imagen);
-            const data = await cambiarPortada(formData, user.id);
-            if (data) {
-                dispatch(createUser(data.data));
-                setOpen(true);
-                alertSucces(data.message);
-            }
-        } catch (error) {
-            alertError(data.message);
-        }
+        e.preventDefault();
+        cambiarImagenPortada(imagen);
     };
 
     return {
         handlechange,
-        handlesubmit,
+        handlesubmitperfil,
         handlesubmitportada,
-        open
     };
 }
 

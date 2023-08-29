@@ -1,14 +1,16 @@
 import React from 'react';
 import { Modal } from '../../Utilities';
 import { useTienda } from '../../Hooks';
+import { useProductContext } from '../../Context/ProductosContext';
 
-function ModalPortada({ closeModal, modalIsOpen }) {
+function ModalPortada() {
 
     const titulo = "Cambiar Foto de Portada";
-    const { handlechange, handlesubmitportada, open } = useTienda();
+    const { modalPortada, closeModalPortada } = useProductContext();
+    const { handlechange, handlesubmitportada } = useTienda();
 
     return (
-        <Modal closeModal={closeModal} modalIsOpen={modalIsOpen} handleSubmit={handlesubmitportada} titulo={titulo}>
+        <Modal closeModal={closeModalPortada} modalIsOpen={modalPortada} handleSubmit={handlesubmitportada} titulo={titulo}>
             <div className="group-modal">
                 <label className="label-form-modal" htmlFor="imagen">Seleccione una imagen </label>
                 <input type="file" onChange={handlechange} id="imagen" className="input-modal" name="imagen" required />
