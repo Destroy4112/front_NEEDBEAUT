@@ -14,12 +14,10 @@ function Portada() {
     return (
         <div className="portada">
             <img src={imagen ? imagenServer : imagenLocal} alt="portada" />
-            {openModalPortada &&
-                <button className="change-portada" onClick={openModalPortada}>
-                    <FaCamera />
-                    <span>Cambiar foto de portada</span>
-                </button>
-            }
+            <button className="change-portada" onClick={openModalPortada}>
+                <FaCamera />
+                <span>Cambiar foto de portada</span>
+            </button>
         </div>
     );
 }

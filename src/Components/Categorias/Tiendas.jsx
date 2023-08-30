@@ -2,9 +2,12 @@ import React from 'react';
 import imagenes from '../../Assets/Images/imagenes';
 import { Spinner } from '../../Utilities';
 import { Link } from 'react-router-dom';
-import { PublicRoutes } from '../../Models';
+import { PublicRoutes, RouteBack } from '../../Models';
 
 function Tiendas({ tiendas, loading }) {
+
+    const imagenLocal = imagenes.perfil;
+
     return (
         <>
             {
@@ -16,7 +19,7 @@ function Tiendas({ tiendas, loading }) {
                     tiendas.length > 0 ? (
                         tiendas.map((tienda) => (
                             <Link to={`${PublicRoutes.TIENDA}/${tienda.id}`} className="tienda" key={tienda.id}>
-                                <img src={imagenes.peluqueria} className="image-tienda" alt="" />
+                                <img src={tienda.perfil ? RouteBack + tienda.perfil : imagenLocal} className="image-tienda" alt="" />
                                 <div className="content-tienda">
                                     <h3>{tienda.negocio}</h3>
                                     <span>accesorios lindo para ti</span>

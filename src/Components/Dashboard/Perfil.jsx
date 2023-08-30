@@ -4,7 +4,7 @@ import { FaCamera } from "react-icons/fa";
 import { RouteBack } from "../../Models";
 import { useProductContext } from "../../Context/ProductosContext";
 
-function Perfil() {
+function Perfil({ userData }) {
 
     const { user, openModalPerfil } = useProductContext();
     const imagenLocal = imagenes.perfil;
@@ -15,11 +15,9 @@ function Perfil() {
     return (
         <div className="perfil">
             <img src={imagen ? imagenServer : imagenLocal} alt="perfil" />
-            {openModalPerfil &&
-                <button className="change-perfil" onClick={openModalPerfil}>
-                    <FaCamera />
-                </button>
-            }
+            <button className="change-perfil" onClick={openModalPerfil}>
+                <FaCamera />
+            </button>
             <h2 className="nombre-perfil"> {nombre} </h2>
         </div>
     );
