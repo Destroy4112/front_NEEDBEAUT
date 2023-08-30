@@ -1,8 +1,8 @@
 import axios from "axios";
 
-const URL_TIENDA = "http://localhost:8000/api/tiendas/";
-const URL_TIENDA_CATEGORIA = "http://localhost:8000/api/tiendas/categoria/";
-const URL_TIENDA_PRODUCTOS = "http://localhost:8000/api/products/";
+const URL_TIENDA = "https://backneedbeaut-production.up.railway.app/api/tiendas/";
+const URL_TIENDA_CATEGORIA = "https://backneedbeaut-production.up.railway.app/api/tiendas/categoria/";
+const URL_TIENDA_PRODUCTOS = "https://backneedbeaut-production.up.railway.app/api/products/";
 const COMPLEMENTO = "/mostrarTiendaPorProducto";
 const COMPLEMENTO2 = "/agregar-imagen-perfil";
 const COMPLEMENTO3 = "/agregar-imagen-portada";
