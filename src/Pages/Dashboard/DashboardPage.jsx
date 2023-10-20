@@ -1,9 +1,7 @@
 import React from 'react';
-import { BotonCrear, Calificacion, Fotos, HeaderDashboard, Informacion, ModalCrear, ModalPerfil, ModalPortada, Perfil, Portada, Productos, TituloFotos } from "../../Components";
+import { BotonCrear, BotonCrearFoto, Calificacion, Fotos, HeaderDashboard, Informacion, ModalCrear, ModalDestacadas, ModalPerfil, ModalPortada, Perfil, Portada, Productos, TituloFotos } from "../../Components";
 import { Div, Section } from "../../Utilities";
-import { useSelector } from "react-redux";
 import { ProductosContext } from '../../Context';
-import { useModal } from '../../Hooks';
 
 function DashboardPage() {
 
@@ -27,21 +25,23 @@ function DashboardPage() {
                 </Section>
                 <Section clase={"contenedor-info"}>
                     <Div clase={"contenedor-column foto-list"}>
-                        <TituloFotos clase={"titulo-fotos"} titulo={"Fotos"} />
+                        <Div clase={"content-titulos-boton"}>
+                            <TituloFotos clase={"titulo-fotos"} titulo={"Fotos"} />
+                            <BotonCrearFoto />
+                        </Div>
                         <Fotos />
                     </Div>
+                    <ModalDestacadas />
                 </Section>
                 <Section clase={"contenedor-info"}>
-                    <Div clase={"contenedor-column"}>
-                        <Div clase={"content-productos"}>
-                            <Div clase={"contenedor-row pro"}>
-                                <TituloFotos clase={"titulo-productos"} titulo={"Productos"} />
-                                <BotonCrear />
-                            </Div>
-                            <Productos />
+                    <Div clase={"content-productos"}>
+                        <Div clase={"content-titulos-boton"}>
+                            <TituloFotos clase={"titulo-productos"} titulo={"Productos"} />
+                            <BotonCrear />
                         </Div>
-                        <ModalCrear />
+                        <Productos />
                     </Div>
+                    <ModalCrear />
                 </Section>
                 {/* <Modal modalIsOpen={modalIsOpen} closeModal={closeModal} /> */}
             </>

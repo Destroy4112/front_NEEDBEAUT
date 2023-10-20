@@ -2,7 +2,7 @@ import React, { createContext, useContext, useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { agregarProducto, consultarProductosPorTienda } from '../Services/productService';
 import { alertError, alertSucces } from '../Utilities';
-import { cambiarPerfil, cambiarPortada } from '../Services/tiendaService';
+import { agregarImagenDestacada, cambiarPerfil, cambiarPortada, destacadasPorTienda } from '../Services/tiendaService';
 import { createUser } from '../Redux/userSlice';
 
 const ProductContext = createContext();
@@ -15,7 +15,9 @@ function ProductosProvider({ children }) {
     const user = useSelector((state) => state.user);
     const [modalPerfil, setModalPerfil] = useState(false);
     const [modalPortada, setModalPortada] = useState(false);
+    const [modalDestacadas, setModalDestacadas] = useState(false);
     const [listaProductos, setListaProductos] = useState([]);
+    const [imagenesDestacadas, setImagenesDestacadas] = useState([]);
     const [loading, setLoading] = useState(false);
     const [modalIsOpen, setModalIsOpen] = useState(false);
 
@@ -43,6 +45,14 @@ function ProductosProvider({ children }) {
         setModalPortada(false);
     };
 
+    const openModalDestacadas = () => {
+        setModalDestacadas(true);
+    };
+
+    const closeModalDestacadas = () => {
+        setModalDestacadas(false);
+    };
+
     const addProduct = async (producto) => {
         try {
             const formData = new FormData();
@@ -66,6 +76,22 @@ function ProductosProvider({ children }) {
         }
     };
 
+    const addImagenDestacada = async (imagen) => {
+        try {
+            const formData = new FormData();
+
+            formData.append('destacadas', imagen);
+
+            const data = await agregarImagenDestacada(formData, user.id);
+            if (data) {
+                closeModalDestacadas();
+                alertSucces(data.message);
+            }
+        } catch (error) {
+            console.log(error.message);
+        }
+    };
+
     const getProductosPorTienda = async () => {
         try {
             setLoading(true);
@@ -78,8 +104,21 @@ function ProductosProvider({ children }) {
         }
     };
 
+    const getDestacadasPorTienda = async () => {
+        try {
+            setLoading(true);
+            const data = await destacadasPorTienda(user.id);
+            setLoading(false);
+            setImagenesDestacadas(data.imagenes_destacadas);
+        } catch (error) {
+            setLoading(false);
+            alertError(error.message);
+        }
+    };
+
     useEffect(() => {
         getProductosPorTienda();
+        getDestacadasPorTienda();
     }, []);
 
     const cambiarImagenPerfil = async (imagen) => {
@@ -116,19 +155,25 @@ function ProductosProvider({ children }) {
         user,
         loading,
         listaProductos,
+        imagenesDestacadas,
         modalIsOpen,
         modalPerfil,
         modalPortada,
+        modalDestacadas,
         addProduct,
         getProductosPorTienda,
+        getDestacadasPorTienda,
         cambiarImagenPerfil,
         cambiarImagenPortada,
+        addImagenDestacada,
         openModal,
         openModalPerfil,
         openModalPortada,
+        openModalDestacadas,
         closeModal,
         closeModalPerfil,
         closeModalPortada,
+        closeModalDestacadas
     }
 
     return (

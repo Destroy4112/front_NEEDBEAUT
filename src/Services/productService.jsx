@@ -1,7 +1,7 @@
 import axios from "axios";
 
-const URL_PRODUCTO = "https://backneedbeaut-production.up.railway.app/api/products";
-const URL_TIENDA = "https://backneedbeaut-production.up.railway.app/api/tiendas/productos-por-tiendas/";
+const URL_PRODUCTO = "http://localhost:8000/api/products";
+const URL_TIENDA = "http://localhost:8000/api/tiendas/productos-por-tiendas/";
 
 export async function agregarProducto(producto) {
     const options = {

@@ -1,5 +1,5 @@
-const URL_LOGIN = "https://backneedbeaut-production.up.railway.app/api/tiendas/login";
-const URL_REGISTRO = "https://backneedbeaut-production.up.railway.app/api/tiendas";
+const URL_LOGIN = "http://localhost:8000/api/tiendas/login";
+const URL_REGISTRO = "http://localhost:8000/api/tiendas";
 
 export async function validarSesion(user) {
     const options = {

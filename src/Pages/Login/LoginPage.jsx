@@ -59,6 +59,7 @@ function LoginPage() {
         } catch (error) {
             setDisabled(false);
             setIsLoading(false);
+            console.log(error.message);
             alertError("No se pudo establecer conexión con el servidor.");
         }
     };

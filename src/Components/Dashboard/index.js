@@ -1,10 +1,12 @@
 export { default as BotonCrear } from './BotonCrear';
+export { default as BotonCrearFoto } from './BotonCrearFoto';
 export { default as Calificacion } from './Calificacion';
 export { default as Fotos } from './Fotos';
 export { default as HeaderDashboard } from './HeaderDashboard';
 export { default as Informacion } from './Informacion';
 export { default as Logout } from './Logout';
 export { default as ModalCrear } from './ModalCrear';
+export { default as ModalDestacadas } from './ModalDestacadas';
 export { default as ModalPerfil } from './ModalPerfil';
 export { default as ModalPortada } from './ModalPortada';
 export { default as Perfil } from './Perfil';

@@ -3,7 +3,7 @@ import { useProductContext } from '../Context/ProductosContext';
 
 function useTienda() {
 
-    const { cambiarImagenPortada, cambiarImagenPerfil } = useProductContext();
+    const { cambiarImagenPortada, cambiarImagenPerfil, addImagenDestacada } = useProductContext();
     const [imagen, setImagen] = useState(null);
 
     const handlechange = (event) => {
@@ -21,10 +21,16 @@ function useTienda() {
         cambiarImagenPortada(imagen);
     };
 
+    const handlesubmitdestacada = async (e) => {
+        e.preventDefault();
+        addImagenDestacada(imagen);
+    };
+
     return {
         handlechange,
         handlesubmitperfil,
         handlesubmitportada,
+        handlesubmitdestacada
     };
 }
 

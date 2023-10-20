@@ -563,12 +563,16 @@ select :focus {
 
 
 .titulo-fotos {
-  width: 7%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 80px;
   padding: 6px;
   background-color: #ba9dc0;
   border-radius: 25px;
   text-align: center;
   font-weight: bold;
+  height: 41px;
 }
 
 .foto-list {
@@ -577,18 +581,20 @@ select :focus {
 
 .list-fotos {
   display: flex;
-  flex-wrap: wrap;
   justify-content: space-between;
   align-items: center;
+  flex-wrap: wrap;
   margin: 20px auto;
 }
 
 .list-fotos img {
-  width: calc(23% - 15px);
-  height: 200px;
+  width: 150px;
+  height: 150px;
   border: 5px solid white;
   border-radius: 50%;
   margin-bottom: 20px;
+  margin: 0 20px;
+  object-fit: cover;
 }
 
 .boton-crear {
@@ -613,14 +619,24 @@ select :focus {
   width: 100%;
 }
 
+.content-titulos-boton {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 100%;
+}
+
 .titulo-productos {
-  width: 11%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 110px;
   padding: 6px;
   background-color: #ba9dc0;
   border-radius: 25px;
   text-align: center;
   font-weight: bold;
-  height: 35px;
+  height: 41px;
 }
 
 .list-productos {
@@ -984,6 +1000,7 @@ select :focus {
   .list-fotos img {
     width: 120px;
     height: 120px;
+    margin: 5px auto;
   }
 
   .titulo-productos {
@@ -1022,10 +1039,6 @@ select :focus {
 
   .content-modal {
     padding: 1rem;
-  }
-
-  .pro {
-    flex-direction: row;
   }
 
 }
@@ -1085,8 +1098,9 @@ select :focus {
   }
 
   .list-fotos img {
-    width: calc(25% - 15px);
+    width: 120px;
     height: 120px;
+    margin: 0 5px;
   }
 
   .titulo-productos {
@@ -1118,7 +1132,9 @@ select :focus {
   }
 
   .list-fotos img {
+    width: 150px;
     height: 155px;
+    margin: 0 10px;
   }
 
   .titulo-productos {

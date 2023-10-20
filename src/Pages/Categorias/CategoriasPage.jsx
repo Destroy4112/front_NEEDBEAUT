@@ -18,7 +18,6 @@ function CategoriasPage() {
         try {
             setLoading(true);
             const data = await getTiendasPorCategoria(categoria);
-            console.log(data);
             setLoading(false);
             if (data) {
                 setTiendas(data);
